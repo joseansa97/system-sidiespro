@@ -51,19 +51,43 @@ CUERPO DEL MODAL
 
     <!-- ENTRADA PARA LA FECHA DE INICIO -->
     <div class="col-auto">
-        <label for="date">Fecha de Inicio: </label>
+        <label for="datestart">Fecha de Inicio: </label>
         <div class="input-group mb-2">
             <div class="input-group-prepend">
             <span class="input-group-text">
                 <i class="fas fa-user-tie"></i>
             </span>
             </div>
-            <input type="date" class="form-control float-right" name="date">
+            <input type="date" class="form-control float-right @error('datestart') is-invalid @enderror" name="datestart" value="{{ old('datestart') }}">
         </div> <!-- /.input group -->
+        @error('datestart')
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                {{ $message }}
+            </div>
+        @enderror
     </div>
     <!-- /.form group -->
 
-
+    <!-- ENTRADA PARA LA FECHA FIN -->
+    <div class="col-auto">
+        <label for="dateend">Fecha de Finalización: </label>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+            <span class="input-group-text">
+                <i class="fas fa-user-tie"></i>
+            </span>
+            </div>
+            <input type="date" class="form-control float-right @error('dateend') is-invalid @enderror" name="dateend" value="{{ old('dateend') }}">
+        </div> <!-- /.input group -->
+        @error('dateend')
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+    <!-- /.form group -->
 
     </div>
 

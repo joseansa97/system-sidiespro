@@ -22,11 +22,12 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+            $users = User::all();
 
-        return view('usuarios.index', compact('users'));
+            return view('usuarios.index', compact('users'));
+        
     }
 
     /**

@@ -30,7 +30,7 @@ class EstudianteFormRequest extends FormRequest
             'autor2' => 'min:3|max:100',
             'carrera_id' => 'required',
             'residencia_id' => 'required',
-            'archivo' => 'required|mimes:pdf|min:5|max:250',
+            'archivo' => 'required|mimes:pdf',
         ];
     }
 
@@ -51,8 +51,8 @@ class EstudianteFormRequest extends FormRequest
             'carrera_id.required'  => 'La carrera es requerido',
             'residencia_id.required' => 'Residencia es requerido',
             'archivo.required' => 'El archivo es requerido',
-            'archivo.mimes' => 'El archivo debe ser en pdf',
-            'archivo.min'  => 'Minimo tres caracteres',
+            'archivo.mimes' => 'El archivo debe ser en formato pdf',
+            'archivo.min'  => 'Minimo cinco caracteres',
             'archivo.max'  => 'Limite excedido de caracteres',
         ];
     }

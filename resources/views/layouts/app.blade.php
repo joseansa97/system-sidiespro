@@ -145,21 +145,50 @@
                                         <a href="{{ url('estudiantes') }}"
                                             class="{{ Request::path() === 'estudiantes' ? 'nav-link active' : 'nav-link' }}">
                                             <i class="far fa-circle nav-icon"></i>
+                                            <p>General</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        
+                                        <a href="{{ url('estudiantes') }}?search=1"
+                                            class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
                                             <p>Lic. Administración</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="notas/favoritas"
-                                            class="{{ Request::path() === 'notas/favoritas' ? 'nav-link active' : 'nav-link' }}">
+                                        <a href="{{ url('estudiantes') }}?search=2"
+                                            class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Ing. Civil</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="notas/archivadas"
-                                            class="{{ Request::path() === 'notas/archivadas' ? 'nav-link active' : 'nav-link' }}">
+                                        <a href="{{ url('estudiantes') }}?search=3"
+                                            class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Ing. Gestion E.</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('estudiantes') }}?search=4"
+                                            class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Ing. Industrial</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('estudiantes') }}?search=5"
+                                            class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Ing. Mecatronica</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('estudiantes') }}?search=6"
+                                            class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Ing. Sistemas C.</p>
                                         </a>
                                     </li>
                                 </ul>

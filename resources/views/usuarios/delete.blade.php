@@ -1,4 +1,4 @@
-<a href="" data-target="#modal-delete-{{$user->id}}" data-toggle="modal"><button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></a>
+<a href="" data-target="#modal-delete-{{$user->id}}" data-toggle="modal"><button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="left" title="Eliminar Usuario"><i class="fa fa-trash"></i></button></a>
 
 <!--=====================================
 MODAL ELIMINAR Estudiante

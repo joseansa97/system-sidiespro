@@ -29,7 +29,7 @@
         <div class="card">
             <div class="card-header">
             <h1 class="card-title">Lista de Coordinadores &nbsp; </h1>
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalAgregarCoordinador">  
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalAgregarCoordinador" data-toggle="tooltip" data-placement="left" title="Nuevo Coordinador">  
                 <i class="fas fa-plus"></i> Registrar
             </button>
             <div class="card-tools">
@@ -49,25 +49,27 @@
             <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Carrera</th>
                     <th>Nombre Completo</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($coordinators as $coordinator)
                 <tr>
-                    <th scope="row"> {{ $coordinator->cuid }}</th>
-                    <td scope="row"> {{ $coordinator->name }}</td>
+                    <!--  
+                    <th scope="row"> $coordinator->cuid</th>-->
+                    <td scope="row"> <strong>{{ $coordinator->name }}</strong></td>
                     <td scope="row"> {{ $coordinator->nombre }}</td>
+                    <td scope="row"> {{ $coordinator->datestart }} </td>
+                    <td scope="row"> {{ $coordinator->dateend }} </td>
                     <td>
-                        <a href="#" data-target="#modal-edit-{{$coordinator->cuid}}" data-toggle="modal"><button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></a>
-                        <a href="" data-target="#modal-delete-{{$coordinator->cuid}}" data-toggle="modal"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button></a>                   
+                        @include('coordinadores.edit')
+                        @include('coordinadores.delete', ['coordinator' => $coordinator])
                     </td>
                 </tr>
-                @include('coordinadores.edit')
-                @include('coordinadores.delete', ['coordinator' => $coordinator])
                 @endforeach
             </tbody>
             </table>

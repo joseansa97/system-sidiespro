@@ -26,6 +26,9 @@ class CoordinatorFormRequest extends FormRequest
         return [
             'carrera' => 'required|unique:carrera_user,carrera_id',
             'coordinador' => 'required',
+            'datestart' => 'required',
+            'dateend' => 'required',
+
         ];
     }
 
@@ -35,6 +38,8 @@ class CoordinatorFormRequest extends FormRequest
             'carrera.required' => 'Es obligatorio seleccionar la carrera',
             'carrera.unique' => 'La carrera seleccionada ya se encuentra registrado',
             'coordinador.required' => 'Es obligatorio seleccionar el coordinador',
+            'datestart.required' => 'Es obligatorio la fecha de inicio',
+            'dateend.required' => 'Es obligatorio la fecha de finalización',
         ];
     }
     

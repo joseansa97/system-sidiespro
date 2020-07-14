@@ -10,7 +10,7 @@
           CABEZA DEL MODAL
           ======================================-->
         <div class="modal-header bg-primary">
-          <h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-eye"></i> Vista Detalle</h5>
+          <h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-eye"></i> Detalle del Proyecto</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -27,14 +27,14 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <p>Titulo del proyecto: <b>{{ $student->titulo }}</b></p>
-                                <p>Asesor: <b>{{ $student->asesor }}</b></p>
-                                <p>Primer Integrante: <b>{{ $student->autor }}</b></p>
+                                <p><strong>Titulo del Proyecto:</strong> {{ $student->titulo }}</p>
+                                <p><strong>Asesor:</strong> {{ $student->asesor }}</p>
+                                <p><strong>Primer Integrante:</strong> {{ $student->autor }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p>Segundo Integrante: <b>{{ $student->autor2 }}</b></p>
-                                <p>Carrera: <b>{{ $student->carrera_id }}</b></p>
-                                <p>Tipo: <b>{{ $student->residencia_id }}</b></p>
+                                <p><strong>Segundo Integrante:</strong> {{ $student->autor2 }}</p>
+                                <p><strong>Carrera:</strong> {{ $student->carrera_id }}</p>
+                                <p><strong>Tipo:</strong> {{ $student->residencia_id }}</p>
                             </div>
                         </div>
                     </div>

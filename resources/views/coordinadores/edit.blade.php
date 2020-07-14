@@ -1,3 +1,5 @@
+<a href="#" data-target="#modal-edit-{{$coordinator->cuid}}" data-toggle="modal"><button class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Editar Coordinador"><i class="fas fa-edit"></i></button></a>
+
 <!--=====================================
 MODAL AGREGAR COORDINADOR A UNA CARRERA
 ======================================-->
@@ -80,14 +82,28 @@ MODAL AGREGAR COORDINADOR A UNA CARRERA
 
                         <!-- ENTRADA PARA LA FECHA DE INICIO -->
                         <div class="col-auto">
-                            <label for="date">Fecha de Inicio: </label>
+                            <label for="datestart">Fecha de Inicio: </label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="fas fa-user-tie"></i>
                                 </span>
                                 </div>
-                                <input type="date" class="form-control float-right" name="date">
+                                <input type="date" class="form-control float-right" name="datestart" value="{{ old('datestart', $coordinator->datestart) }}">
+                            </div> <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
+
+                        <!-- ENTRADA PARA LA FECHA FIN -->
+                        <div class="col-auto">
+                            <label for="dateend">Fecha de Terminación: </label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user-tie"></i>
+                                </span>
+                                </div>
+                                <input type="date" class="form-control float-right" name="dateend" value="{{ old('dateend', $coordinator->dateend) }}">
                             </div> <!-- /.input group -->
                         </div>
                         <!-- /.form group -->
@@ -101,7 +117,6 @@ MODAL AGREGAR COORDINADOR A UNA CARRERA
                 ======================================-->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Salir</button>
-                    <button type="reset" class="btn btn-warning">Limpiar</button>
                     <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Enviar</button>
                 </div>
 

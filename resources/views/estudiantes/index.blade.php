@@ -25,21 +25,21 @@
 <div class="row">
     <div class="col-12">
       <div class="card">
+
         <div class="card-header">
-          <h3 class="card-title">Lista de Proyectos &nbsp; </h3>
-          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalAgregarEstudiante">  
+          <h6 class="card-title">Lista de Proyectos &nbsp; </h6>
+          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalAgregarEstudiante" data-toggle="tooltip" data-placement="bottom" title="Nuevo Proyecto">  
             <i class="fas fa-plus"></i> Registrar
           </button>
           <div class="card-tools">
             <form>
-            <div class="input-group input-group-sm" style="width: 200px;">
-              <input type="text" name="search" type="search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              <div class="input-group input-group-sm" style="width: 200px;">
+                <input type="text" name="search" type="search" class="form-control float-right" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
           </div>
         </div>
         <!-- /.card-header -->
@@ -48,7 +48,6 @@
         <table class="table table-bordered">
         <thead>
           <tr>
-            
             <th scope="col">Titulo</th>
             <th scope="col">Asesor</th>
             <th scope="col">Primer Integrante</th>
@@ -61,16 +60,15 @@
         <tbody>
         @foreach($students as $student)
           <tr>
-              
-              <td>{{ $student->titulo }}</td>
+              <td><strong>{{ $student->titulo }}</strong></td>
               <td>{{ $student->asesor }}</td>
               <td>{{ $student->autor }}</td>
               <td>{{ $student->autor2 }}</td>
               <td>{{ $student->carrera_id }}</td>
               <td>{{ $student->residencia_id }}</td>
               <td>
-                <a href="#" data-target="#modal-archivo-{{$student->id}}" data-toggle="modal"><button type="button" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></button></a>
-                <a href="{{ route('estudiantes.edit', $student->id) }}" ><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></a>
+                <a href="#" data-target="#modal-archivo-{{$student->id}}" data-toggle="modal"><button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="left" title="Detalle del Proyecto"><i class="fas fa-eye"></i></button></a>
+                <a href="{{ route('estudiantes.edit', $student->id) }}" ><button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar Proyecto"><i class="fas fa-edit"></i></button></a>
                 @include('estudiantes.delete', ['student' => $student])
               </td>
           </tr>
@@ -84,7 +82,11 @@
         <div class="card-footer">
           <div class="row">
             <div class="mx-auto">
-              {{ $students->links() }}
+              @if(Request::get('search'))
+                {{ $students->appends('search', Request::get('search'))->links() }}<!-- se le agrega con appends una variable llamada search con el valor que viene en ella-->
+            @else
+                {{ $students->links() }}
+            @endif
             </div>
           </div>
         </div>

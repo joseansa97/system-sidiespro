@@ -9,20 +9,15 @@
             <div class="card">
               <div class="card-header">
                 <h1 class="card-title">Lista de Usuarios &nbsp; </h1>
-                
-                <a href="{{ url('/usuarios/create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Agregar Usuario</a>
-               
-                <div class="card-tools">
-                    <form>
+                <a href="{{ url('/usuarios/create') }}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Agregar Usuario"><i class="fa fa-plus"></i> Agregar Usuario</a>
+                <!--<div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 200px;">
                         <input type="text" name="search" type="search" class="form-control float-right" placeholder="Search">
-
                         <div class="input-group-append">
                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
-                    </form>
-                </div>
+                </div>-->
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
@@ -46,7 +41,7 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->roles->implode('name', ', ') }}</td>
                         <td>
-                            <a href="{{ route('usuarios.edit', $user->id) }}" ><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></button></a>
+                            <a href="{{ route('usuarios.edit', $user->id) }}" ><button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Editar Usuario"><i class="fas fa-edit"></i></button></a>
                             
                             @include('usuarios.delete', ['user' => $user])                            
                         </td>

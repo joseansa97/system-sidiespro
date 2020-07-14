@@ -1,3 +1,5 @@
+<a href="" data-target="#modal-delete-{{$coordinator->cuid}}" data-toggle="modal"><button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Eliminar Coordinador"><i class="fas fa-trash"></i></button></a>                   
+
 <form action="{{ route('coordinadores.destroy', $coordinator->cuid) }}" method="POST" style="display:inline-block;">
 @csrf()
 @method('DELETE')

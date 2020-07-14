@@ -31,19 +31,19 @@ class HomeController extends Controller
         switch ($rol)
         {
           case 'Normal':
-            $saludo = 'Bienvenido usuario normal';
+            $saludo = 'Bienvenido usuario Normal';
 
             return view('home', compact('saludo'));
             break;
 
           case 'Coordinador':
-              $saludo = 'Bienvenido usuario coordinador';
+              $saludo = 'Bienvenido Coordinador';
 
               return view('home', compact('saludo'));
             break;
 
           case 'Administrador':
-              $saludo = 'Bienvenido usuario Administrador';
+              $saludo = 'Bienvenido Administrador del Sistema';
 
               return view('home', compact('saludo'));
             break;

@@ -21,42 +21,51 @@ class CoordinatorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $coordinators = DB::table('carrera_user AS cu')
-                    ->join('carreras AS c','c.id','=','cu.carrera_id') 
-                    ->join('users AS u','u.id','=','cu.user_id') 
-                    ->select('cu.id as cuid', 'u.id as uid', 'c.id as cid', 'c.name', DB::raw('CONCAT(u.name," ",u.first," ",u.second) as nombre'))
-                    ->orderBy('cuid','desc')
+        if($request){
+
+            $query = trim($request->get('search')); //campo que queremos filtrar
+
+            $coordinators = DB::table('carrera_user AS cu')
+                        ->join('carreras AS c','c.id','=','cu.carrera_id') 
+                        ->join('users AS u','u.id','=','cu.user_id') 
+                        ->select('cu.id as cuid', 'u.id as uid', 'c.id as cid', 'c.name', DB::raw('CONCAT(u.name," ",u.first," ",u.second) as nombre'), 'cu.datestart', 'cu.dateend')
+                        ->where('c.name','LIKE','%'.$query.'%')
+                        ->orWhere('u.name','LIKE','%'.$query.'%')
+                        ->orWhere('u.first','LIKE','%'.$query.'%')
+                        ->orWhere('u.second','LIKE','%'.$query.'%')
+                        ->orderBy('cuid','desc')
+                        ->get();
+                        /*
+                        SELECT cu.id, c.id, c.name, u.id, u.name, u.first, u.second
+                        FROM carrera_user AS cu
+                        JOIN carrera AS c
+                        ON c.id = cu.carrera_id
+                        JOIN users AS u
+                        ON u.id = cu.user_id
+                        ORDER BY cu.id;
+                        */
+            $carreras = DB::table('carreras')
+                    ->select('id', 'name as carrera')
                     ->get();
-                    /*
-                    SELECT cu.id, c.id, c.name, u.id, u.name, u.first, u.second
-                    FROM carrera_user AS cu
-                    JOIN carrera AS c
-                    ON c.id = cu.carrera_id
-                    JOIN users AS u
-                    ON u.id = cu.user_id
-                    ORDER BY cu.id;
-                    */
-        $carreras = DB::table('carreras')
-                ->select('id', 'name as carrera')
-                ->get();
 
-        $users = DB::table('users')
-                    ->select('id', DB::raw('CONCAT(name," ",first," ",second) as coordinador'))
-                    ->Join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
-                    ->where('model_has_roles.role_id', '=', '3')
-                    ->orwhere('model_has_roles.role_id', '=', '2')
-                    ->orderBy('id')
-                    ->get();
+            $users = DB::table('users')
+                        ->select('id', DB::raw('CONCAT(name," ",first," ",second) as coordinador'))
+                        ->Join('model_has_roles', 'model_has_roles.model_id', '=', 'users.id')
+                        ->where('model_has_roles.role_id', '=', '3')
+                        ->orwhere('model_has_roles.role_id', '=', '2')
+                        ->orderBy('id')
+                        ->get();
 
-        /*$users = DB::table('users')
-                    ->select('id', DB::raw('CONCAT(name," ",first," ",second) as nombre'))
-                    
-                    ->get();*/
+            /*$users = DB::table('users')
+                        ->select('id', DB::raw('CONCAT(name," ",first," ",second) as nombre'))
+                        
+                        ->get();*/
 
-        // dd($coordinators);
-        return view('coordinadores.index', ['coordinators' => $coordinators, 'carreras' => $carreras, 'users' => $users]);
+            // dd($coordinators);
+            return view('coordinadores.index', ['coordinators' => $coordinators, 'carreras' => $carreras, 'users' => $users]);
+        }
     }
 
     /**
@@ -82,6 +91,8 @@ class CoordinatorController extends Controller
         $coordinator = new Coordinator;  
         $coordinator->carrera_id = $request->get('carrera');
         $coordinator->user_id = $request->get('coordinador');
+        $coordinator->datestart = $request->get('datestart');
+        $coordinator->dateend = $request->get('dateend');
         $coordinator->save();
 
         return Redirect::to('/coordinadores')->withSuccess('La información de ha guardado con exito.');
@@ -122,9 +133,13 @@ class CoordinatorController extends Controller
         $validator = Validator::make($request->all(), [
             'carrera' => 'required',
             'coordinador' => 'required',
+            'datestart' => 'required',
+            'dateend' => 'required',
         ],[
             'carrera.required' => 'Es obligatorio seleccionar una carrera',
             'coordinador.required' => 'Es obligatorio seleccionar un coordinador',
+            'datestart.required' => 'Es obligatorio la fecha de inicio',
+            'dateend.required' => 'Es obligatorio la fecha de finalización',
         ]);
         
         if($validator->fails()){
@@ -136,6 +151,8 @@ class CoordinatorController extends Controller
         $coordinator = Coordinator::findOrFail($id);
         $coordinator->carrera_id = $request->get('carrera');
         $coordinator->user_id = $request->get('coordinador');
+        $coordinator->datestart = $request->get('datestart');
+        $coordinator->dateend = $request->get('dateend');
         $coordinator->save();
 
         return Redirect::to('/coordinadores')->withSuccess('La información de ha actalizado con exito.');
@@ -151,6 +168,10 @@ class CoordinatorController extends Controller
     {
         $coordinator = Coordinator::findOrFail($id);
         $coordinator->delete();
-        return Redirect::to('/coordinadores ');
+        return Redirect::to('/coordinadores ')->withSuccess('El Coordinador se ha eliminado con exito.');
+
+        return response()->json([
+            'mensaje' => 'Error al eliminar el Coordinador.'
+        ]);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Student;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\EstudianteFormRequest;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -30,9 +31,9 @@ class StudentController extends Controller
                             ->join('carreras AS c','c.id','=','s.carrera_id') 
                             ->join('residencias AS r','r.id','=','s.residencia_id') 
                             ->select('s.id', 's.titulo', 's.asesor', 's.autor', 's.autor2', 'c.id as cid', 'c.name as carrera_id', 'r.id as rid', 'r.name as residencia_id', 's.archivo')
-                            ->where('s.titulo','LIKE','%'.$query.'%')
-                            ->orwhere('s.autor','LIKE','%'.$query.'%')
-                            ->orwhere('s.asesor','LIKE','%'.$query.'%')
+                            ->where('carrera_id','LIKE','%'.$query.'%')
+                            ->orWhere('s.titulo','LIKE','%'.$query.'%')
+                            ->orWhere('s.asesor','LIKE','%'.$query.'%')
                             ->orderBy('s.id','desc')
                             ->paginate(5);
 
@@ -142,6 +143,22 @@ class StudentController extends Controller
     {
         // dd($request->all());
 
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required|min:5|max:250',
+            'asesor' => 'required|min:3|max:100',
+            'autor' => 'required|min:3|max:100',
+            'autor2' => 'min:3|max:100',
+            'carrera_id' => 'required',
+            'residencia_id' => 'required',
+            'archivo' => 'mimes:pdf',
+        ]);
+        
+        if($validator->fails()){
+            return redirect('/estudiantes/' . $id . '/edit')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
         $student = Student::findOrFail($id);
 
         $student->titulo = $request->titulo;
@@ -154,7 +171,7 @@ class StudentController extends Controller
 
         if ($request->hasFile('archivo') !=null) {
             $archivo = $request->file('archivo');
-            // Sube la imagen a la carpeta public/images/movements
+            // Sube la imagen a la carpeta 
             $file = $archivo->store('images/residencia');
             // Guarda la ruta de la imagen en el campo image
             $student->archivo = $file;

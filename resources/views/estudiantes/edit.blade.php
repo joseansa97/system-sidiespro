@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">
-                <h3 class="card-title">Actualizar Información del Estudiante</h3>
+                <h3 class="card-title">Actualizar Información del Proyecto</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-danger btn-sm" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i></button>
@@ -41,7 +41,10 @@
                                     <input type="text" class="form-control @error('titulo') is-invalid @enderror" name="titulo" value="{{ old('titulo', $student->titulo) }}" autofocus placeholder="Titulo del proyecto">
                                 </div>
                                 @error('titulo')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">x</button>
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
@@ -54,8 +57,11 @@
                                     </div>
                                     <input type="text" class="form-control @error('asesor') is-invalid @enderror" name="asesor" value="{{ old('asesor', $student->asesor) }}" placeholder="Asesor" >
                                 </div>
-                                @error('role')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @error('asesor')
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">x</button>
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
@@ -68,8 +74,11 @@
                                     </div>
                                     <input type="text" class="form-control @error('autor') is-invalid @enderror" name="autor" value="{{ old('autor', $student->autor) }}" placeholder="Primer Integrante" >
                                 </div>
-                                @error('role')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @error('autor')
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">x</button>
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
@@ -82,8 +91,11 @@
                                     </div>
                                     <input type="text" class="form-control @error('autor2') is-invalid @enderror" name="autor2" value="{{ old('autor2', $student->autor2) }}" placeholder="Segundo Integrante">
                                 </div>
-                                @error('role')
-                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @error('autor2')
+                                    <div class="alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert">x</button>
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                 
@@ -102,7 +114,7 @@
                                         <option value="">Seleccionar Carrera</option>
                                             @foreach ($carreras as $car)
                                                 @if ($car->id==$student->carrera_id)
-                                                    <option value="{{$car->id}}" selected>{{$car->name}}</option><!--muestra la categoria seleccionada cuando coincida con la uqe trae puesta el articulo-->
+                                                    <option value="{{$car->id}}" selected>{{$car->name}}</option>
                                                 @else
                                                     <option value="{{$car->id}}"> {{ $car->name }} </option>
                                                 @endif
@@ -124,7 +136,7 @@
                                         
                                         @foreach ($residencias as $res)
                                             @if ($res->id==$student->residencia_id)
-                                            <option value="{{$res->id}}" selected>{{$res->name}}</option><!--muestra la categoria seleccionada cuando coincida con la uqe trae puesta el articulo-->
+                                            <option value="{{$res->id}}" selected>{{$res->name}}</option>
                                             @else
                                             <option value="{{$res->id}}">{{ $res->name }}</option>
                                             @endif
@@ -142,8 +154,14 @@
                                     </div>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="archivo">
-                                        <label class="custom-file-label" for="validatedCustomFile">Elegir Archivo</label>
+                                        <label class="custom-file-label" for="validatedCustomFile">Archivo 2MB</label>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <iframe width="100%" height="100%" src="{{ asset($student->archivo) }}"  frameborder="0"></iframe>
                                 </div>
                             </div>
                 
@@ -158,7 +176,6 @@
                     <div class="row">
                         <div class="col-12">
                             <a href="{{ url('estudiantes') }}" class="btn btn-info">Regresar</a>
-                            <button class="btn btn-danger" type="reset">Limpiar</button>
                             <input type="submit" value="Enviar" class="btn btn-success float-right">
                         </div>
                     </div> 
