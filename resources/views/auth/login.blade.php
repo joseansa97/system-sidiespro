@@ -37,8 +37,8 @@
         <main class="py-4"> 
             <div class="login-box">
                 <div class="login-logo">
-                        <img src="{{asset('dist/img/AdminLTELogo.png')}}" class="brand-image img-circle elevation-3"
-                                            style="opacity: .8; width: 20%; height: 20%;">
+                        <img src="{{asset('dist/img/logotectlaxiaco.png')}}" class="brand-image img-circle elevation-2"
+                                            style="padding: 5px; width: 20%; height: 20%; background: #fff;">
                         </div>
                 <!-- /.login-logo -->
                 <div class="card">
@@ -82,6 +82,9 @@
                             <!-- /.col -->
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-paper-plane"></i> {{ __('Ingresar') }}</button>
+                            </div>
+                            <div class="mx-auto mt-3">
+                                <h6>Regresar a <a href="/"><b>Inicio</b></a></h6>
                             </div>
                             <!-- /.col -->
                         </div>

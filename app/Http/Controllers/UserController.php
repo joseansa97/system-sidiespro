@@ -20,6 +20,10 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(['permission:create user'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:read users'], ['only' => 'index']);
+        $this->middleware(['permission:update user'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:delete user'], ['only' => 'destroy']);
     }
 
     public function index(Request $request)
@@ -62,7 +66,7 @@ class UserController extends Controller
             // asignar el rol
             $user->assignRole($request->role);
   
-            return redirect('/usuarios');
+            return redirect('/usuarios')->withSuccess('El usuario se ha guardado con exito.');
         }
     }
 
@@ -150,7 +154,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('/usuarios');
+        return redirect('/usuarios')->withSuccess('El usuario se ha actualizado con exito.');
     }
 
     /**
@@ -168,7 +172,7 @@ class UserController extends Controller
         $user->removeRole($user->roles->implode('name', ', '));
 
         if ($user->delete()) {
-            return redirect('/usuarios');
+            return redirect('/usuarios')->withSuccess('El usuario se ha eliminado con exito.');
         }
 
         return response()->json([

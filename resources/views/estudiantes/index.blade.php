@@ -28,9 +28,11 @@
 
         <div class="card-header">
           <h6 class="card-title">Lista de Proyectos &nbsp; </h6>
+          @can('create student')
           <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalAgregarEstudiante" data-toggle="tooltip" data-placement="bottom" title="Nuevo Proyecto">  
             <i class="fas fa-plus"></i> Registrar
           </button>
+          @endcan
           <div class="card-tools">
             <form>
               <div class="input-group input-group-sm" style="width: 200px;">
@@ -68,8 +70,12 @@
               <td>{{ $student->residencia_id }}</td>
               <td>
                 <a href="#" data-target="#modal-archivo-{{$student->id}}" data-toggle="modal"><button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="left" title="Detalle del Proyecto"><i class="fas fa-eye"></i></button></a>
+                @can('update student')
                 <a href="{{ route('estudiantes.edit', $student->id) }}" ><button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar Proyecto"><i class="fas fa-edit"></i></button></a>
+                @endcan
+                @can('delete student')
                 @include('estudiantes.delete', ['student' => $student])
+                @endcan
               </td>
           </tr>
           @include('estudiantes.file')

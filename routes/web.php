@@ -19,10 +19,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['role:Administrador|Normal|Coordinador']], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 
-Route::resource('usuarios', 'UserController');
+// Route::resource('usuarios', 'UserController');
+Route::group(['middleware' => ['role:Administrador|Normal']], function() {
+    Route::resource('usuarios', 'UserController');
+});
 
-Route::resource('coordinadores', 'CoordinatorController');
+Route::group(['middleware' => ['role:Administrador|Normal']], function() {
+    Route::resource('coordinadores', 'CoordinatorController');
+});
 
-Route::resource('estudiantes', 'StudentController');
+Route::group(['middleware' => ['role:Administrador|Normal|Coordinador']], function() {
+    Route::resource('estudiantes', 'StudentController');
+});

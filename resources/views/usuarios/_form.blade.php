@@ -143,7 +143,6 @@
     <div class="row">
         <div class="col-12">
             <a href="{{ url('usuarios') }}" class="btn btn-info">Regresar</a>
-            <button class="btn btn-danger" type="reset">Limpiar</button>
             <input type="submit" value="Enviar" class="btn btn-success float-right">
         </div>
     </div> 

@@ -29,9 +29,11 @@
         <div class="card">
             <div class="card-header">
             <h1 class="card-title">Lista de Coordinadores &nbsp; </h1>
+            @can('create carrerauser')
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalAgregarCoordinador" data-toggle="tooltip" data-placement="left" title="Nuevo Coordinador">  
                 <i class="fas fa-plus"></i> Registrar
             </button>
+            @endcan
             <div class="card-tools">
                 <form>
                 <div class="input-group input-group-sm" style="width: 200px;">
@@ -66,8 +68,12 @@
                     <td scope="row"> {{ $coordinator->datestart }} </td>
                     <td scope="row"> {{ $coordinator->dateend }} </td>
                     <td>
-                        @include('coordinadores.edit')
-                        @include('coordinadores.delete', ['coordinator' => $coordinator])
+                        @can('update carrerauser')
+                            @include('coordinadores.edit')
+                        @endcan
+                        @can('delete carrerauser')
+                            @include('coordinadores.delete', ['coordinator' => $coordinator])
+                        @endcan
                     </td>
                 </tr>
                 @endforeach

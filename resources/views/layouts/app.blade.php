@@ -53,6 +53,16 @@
                     <li class="nav-item">
                         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                     </li>
+                    <li class="nav-item active">
+                        <div class="image">
+                            <a href="#" class="brand-link">
+                                <img src="{{asset('dist/img/logotectlaxiaco.png')}}" alt="Logo" width="30px" height="30px" class="brand-image img-circle">
+                            </a>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><b>DIVISIÓN DE ESTUDIOS PROFESIONALES</b></a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.navbar -->
@@ -71,14 +81,14 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+                            <img src="{{asset('dist/img/logotectlaxiaco.png')}}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                             <a href="#" class="d-block">
                                 @guest
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                                 @else
-                                {{ Auth::user()->name }}
+                                <b>{{ Auth::user()->name }}</b>
                                 
                                 <a style="color: white; background: #343a40;" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
@@ -108,7 +118,7 @@
                             </li>
 
                             <?php use App\User; $users_count = User::all()->count(); ?>
-                            
+                        @role('Administrador|Normal')
                             <li class="nav-item">
                                 <a href="{{ url('usuarios') }}"
                                     class="{{ Request::path() === 'usuarios' ? 'nav-link active' : 'nav-link' }}">
@@ -123,8 +133,9 @@
                                     </p>
                                 </a>
                             </li>
-                            
-
+                        @endrole    
+                        
+                        @role('Administrador|Normal')
                             <li class="nav-item">
                                 <a href="{{ url('coordinadores') }}"
                                     class="{{ Request::path() === 'coordinadores' ? 'nav-link active' : 'nav-link' }}">
@@ -134,6 +145,7 @@
                                     </p>
                                 </a>
                             </li>
+                        @endrole
 
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link">
@@ -221,10 +233,10 @@
 
             <footer class="main-footer fixed-bottom">
                 <!-- NO QUITAR -->
-                <strong>División de Estudios Profesionales
-                    <div class="float-right d-none d-sm-inline-block">
-                        <b>Version</b> 1.0
-                    </div>
+                <b> INSTITUTO TECNOLÓGICO DE TLAXIACO </b>
+                <div class="float-right d-none d-sm-inline-block">
+                    <b>TECNOLÓGICO NACIONAL DE MEXICO</b>
+                </div>
             </footer>
 
 

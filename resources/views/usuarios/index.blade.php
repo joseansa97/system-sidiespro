@@ -2,6 +2,13 @@
 
 @section('content')
 
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        <strong>{{ $message }}</strong>
+    </div>
+@endif
+
 <div class="container">
 
     <div class="row">
@@ -9,7 +16,9 @@
             <div class="card">
               <div class="card-header">
                 <h1 class="card-title">Lista de Usuarios &nbsp; </h1>
+                @can('create user')
                 <a href="{{ url('/usuarios/create') }}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Agregar Usuario"><i class="fa fa-plus"></i> Agregar Usuario</a>
+                @endcan
                 <!--<div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 200px;">
                         <input type="text" name="search" type="search" class="form-control float-right" placeholder="Search">
@@ -24,7 +33,7 @@
                 <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        
                         <th>Nombre</th>
                         <th>Telefono</th>
                         <th>email</th>
@@ -35,15 +44,18 @@
                 <tbody>        
                     @foreach ($users as $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
+                        
                         <td>{{ $user->name }} {{ $user->first }} {{ $user->second }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->roles->implode('name', ', ') }}</td>
                         <td>
+                          @can('update user')
                             <a href="{{ route('usuarios.edit', $user->id) }}" ><button type="button" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Editar Usuario"><i class="fas fa-edit"></i></button></a>
-                            
-                            @include('usuarios.delete', ['user' => $user])                            
+                          @endcan  
+                          @can('delete user')
+                            @include('usuarios.delete', ['user' => $user]) 
+                            @endcan                           
                         </td>
                     </tr>
                     @endforeach
@@ -55,7 +67,7 @@
               <div class="card-footer">
                 <div class="row">
                     <div class="mx-auto">
-                        paginacion
+                        INSTITUTO TECNOLÓGICO DE TLAXIACO
                     </div>
                 </div>  
               </div>
