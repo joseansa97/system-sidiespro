@@ -87,7 +87,6 @@ class CoordinatorController extends Controller
     public function store(CoordinatorFormRequest $request)
     {
         // dd($request->all());
-
         $coordinator = new Coordinator;  
         $coordinator->carrera_id = $request->get('carrera');
         $coordinator->user_id = $request->get('coordinador');
@@ -129,7 +128,6 @@ class CoordinatorController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $validator = Validator::make($request->all(), [
             'carrera' => 'required',
             'coordinador' => 'required',

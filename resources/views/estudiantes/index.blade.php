@@ -4,23 +4,9 @@
 
 @include('estudiantes.create')
 
-@if ($message = Session::get('success'))
-    <div class="alert alert-success alert-block">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <strong>{{ $message }}</strong>
-    </div>
-@endif
+@include('partials.exitos')
 
-@if ($errors->any())
-    <div class="alert alert-danger alert-block">
-        <button type="button" class="close" data-dismiss="alert">x</button>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+@include('partials.errores')
     
 <div class="row">
     <div class="col-12">

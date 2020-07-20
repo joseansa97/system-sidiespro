@@ -26,7 +26,7 @@ class UsuarioFormRequest extends FormRequest
         return [
             'name' => 'required|min:3|max:50',
             'first' => 'required|min:3|max:50',
-            'second' => 'min:3|max:50',
+            'second' => 'max:50',
             'phone' => 'required|min:8|max:20',
             'email' => 'required|unique:users|min:5|max:100',
             'role' => 'required',
@@ -43,7 +43,6 @@ class UsuarioFormRequest extends FormRequest
             'first.required'  => 'Apellido Paterno requerido',
             'first.min' => 'Minimo tres caracteres',
             'first.max' => 'Limite excedido de caracteres',
-            'second.min'  => 'Apellido Materno minimo tres caracteres',
             'second.max' => 'Limite excedido de caracteres',
             'phone.required'  => 'Número de telefono requerido',
             'phone.min' => 'Minimo ocho caracteres',
