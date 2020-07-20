@@ -38,12 +38,12 @@ class UsersTableSeeder extends Seeder
 
         // usuario con el rol Administrador
         $administrador = User::create([
-            'name' => 'Norma',
-            'first' => 'Rosas',
-            'second' => 'Gutierrez',
-            'phone' => '9531001234',
-            'email' => 'norma@ittlaxiaco.edu.mx',
-            'password' =>bcrypt('secret')
+            'name' => 'Admin',
+            'first' => 'Admin',
+            'second' => 'Admin',
+            'phone' => '9535520405',
+            'email' => 'admin@ittlaxiaco.edu.mx',
+            'password' =>bcrypt('adminittlaxiaco')
         ]);
 
         $administrador->assignRole('Administrador');

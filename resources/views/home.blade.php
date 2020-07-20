@@ -34,7 +34,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-success">
                                   <div class="inner">
-                                    <h3>53<sub style="font-size: 20px">%</sub></h3>
+                                    <h3>160</h3>
                                     <p>Lic. Administración</p>
                                   </div>
                                   <div class="icon">
@@ -49,7 +49,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-orange">
                                   <div class="inner">
-                                    <h3>44</h3>
+                                    <h3>88</h3>
                     
                                     <p>Ing. Industrial</p>
                                   </div>
@@ -81,7 +81,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-olive">
                                   <div class="inner">
-                                    <h3>65</h3>
+                                    <h3>130</h3>
                                     <p>Ing. Gestion Empresarial</p>
                                   </div>
                                   <div class="icon">
@@ -97,7 +97,7 @@
                                 <!-- small box -->
                                 <div class="small-box bg-navy">
                                   <div class="inner">
-                                    <h3>65</h3>
+                                    <h3>90</h3>
                                     <p>Ing. Sistemas Computacionales</p>
                                   </div>
                                   <div class="icon">
